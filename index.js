@@ -1,7 +1,26 @@
 const coap = require('coap')
 const server = coap.createServer({ type: 'udp6' })
 const mqtt = require("mqtt");
+const fs = require('fs');
 
+// Path to the JSON file
+const filePath = './options.json';
+
+// Read the file asynchronously
+fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error reading file:', err);
+        return;
+    }
+
+    try {
+        // Parse the JSON data
+        const options = JSON.parse(data);
+        console.log('File contents:', options);
+    } catch (parseErr) {
+        console.error('Error parsing JSON:', parseErr);
+    }
+});
 const client = mqtt.connect("mqtt://ha.brookes.cloud", {username: "mqtt", password: "G1g4b1t!"});
 
 let regPayloadT = {
