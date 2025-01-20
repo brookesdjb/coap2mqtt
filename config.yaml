@@ -10,5 +10,9 @@ arch:
   - armv7
   - i386
 startup: services
+options:
+  secret: "secret string"
+schema:
+  secret: str
 ports:
   5683/udp: 5683
