@@ -5,6 +5,7 @@ const fs = require('fs');
 
 // Path to the JSON file
 const filePath = './options.json';
+const filePath2 = 'data/options.json';
 
 // Read the file asynchronously
 fs.readFile(filePath, 'utf8', (err, data) => {
@@ -20,6 +21,22 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     } catch (parseErr) {
         console.error('Error parsing JSON:', parseErr);
     }
+});
+
+// Read the file asynchronously
+fs.readFile(filePath2, 'utf8', (err, data) => {
+   if (err) {
+       console.error('Error reading file2:', err);
+       return;
+   }
+
+   try {
+       // Parse the JSON data
+       const options = JSON.parse(data);
+       console.log('File contents2:', options);
+   } catch (parseErr) {
+       console.error('Error parsing JSON2:', parseErr);
+   }
 });
 const client = mqtt.connect("mqtt://ha.brookes.cloud", {username: "mqtt", password: "G1g4b1t!"});
 
