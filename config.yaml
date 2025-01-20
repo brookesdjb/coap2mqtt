@@ -8,8 +8,6 @@ arch:
   - amd64
   - armhf
   - armv7
-  - arm64
-  - armv8
   - i386
 startup: services
 ports:
