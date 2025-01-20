@@ -13,11 +13,11 @@ RUN \
     nodejs \
     npm
     
-WORKDIR /data
+# WORKDIR /data
 
-COPY package*.json /
+COPY package*.json /data/
 
-COPY index.js /
+COPY index.js /data/
 
 RUN npm install
 
