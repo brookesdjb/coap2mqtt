@@ -15,10 +15,11 @@ RUN \
 
 RUN mkdir -p /data
 WORKDIR /data
-
+RUN pwd
 COPY package*.json ./
 
 COPY index.js ./
+RUN ls
 
 RUN npm install
 
