@@ -12,12 +12,13 @@ RUN \
   apk add --no-cache \
     nodejs \
     npm
-    
+
+RUN mkdir -p /data
 WORKDIR /data
 
-COPY package*.json /data/
+COPY package*.json ./
 
-COPY index.js /data/
+COPY index.js ./
 
 RUN npm install
 
