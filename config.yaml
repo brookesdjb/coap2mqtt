@@ -1,0 +1,16 @@
+name: "Coap2MQTT"
+description: "CoAP server that forwards messages to the Home Assistant MQTT broker"
+version: "1.0.0"
+slug: "coap_mqtt"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - arm64
+  - armv8
+  - i386
+startup: services
+ports:
+  8000/tcp: 8000

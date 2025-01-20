@@ -1,6 +1,7 @@
 const coap = require('coap')
 const server = coap.createServer({ type: 'udp6' })
 const mqtt = require("mqtt");
+
 const client = mqtt.connect("mqtt://ha.brookes.cloud", {username: "mqtt", password: "G1g4b1t!"});
 
 let regPayloadT = {
@@ -35,18 +36,40 @@ let regPayloadT = {
        ]
     }
  }
+
+ let regPayloadB = {
+   "device_class":"battery",
+   "state_topic":"homeassistant/sensor/esp001/state",
+   "unit_of_measurement":"%",
+   "value_template":"{{ value_json.battery}}",
+   "unique_id":"batt01ae",
+   "device":{
+      "identifiers":[
+         "esp001ae"
+      ]
+   }
+}
 client.on("connect", () => {
    console.log("connected");
    client.publish("homeassistant/sensor/esp001T/config", JSON.stringify(regPayloadT));
    client.publish("homeassistant/sensor/esp001H/config", JSON.stringify(regPayloadH));
+   client.publish("homeassistant/sensor/esp001B/config", JSON.stringify(regPayloadB));
+
 //    client.publish("homeassistant/sensor/esp003H/config", '');
 
   });
 
 server.on('request', (req, res) => {
+   if(req.url.split('/')[1] === 'update'){
+      console.log('update request')
+      res.end('yes\n')
+      return
+
+   }
+
     const payload = req.payload.toString().split(':');
-    console.log(req.url.split('/')[1], payload[0], payload[1])
-    client.publish(`homeassistant/sensor/esp001/state`, JSON.stringify({temperature: Number(payload[0]), humidity: Number(payload[1])}));
+    console.log(req.url.split('/')[1], payload[0], payload[1], JSON.stringify(payload));
+    client.publish(`homeassistant/sensor/esp001/state`, JSON.stringify({temperature: Number(payload[0]), humidity: Number(payload[1]), battery: Number(payload[2])}));
 
   res.end('Hello\n')
 })
