@@ -11,4 +11,4 @@ arch:
   - i386
 startup: services
 ports:
-  8000/tcp: 8000
+  5683/udp: 5683
