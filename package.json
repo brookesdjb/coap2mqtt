@@ -12,7 +12,6 @@
   "description": "",
   "dependencies": {
     "coap": "^1.4.0",
-    "mdns": "^2.7.2",
     "mqtt": "^5.10.3"
   }
 }
