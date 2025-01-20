@@ -13,13 +13,11 @@ RUN \
     nodejs \
     npm
     
-# WORKDIR /data
+WORKDIR /data
 
 COPY package*.json /data/
 
 COPY index.js /data/
-
-RUN npm cache clean --force
 
 RUN npm install
 
