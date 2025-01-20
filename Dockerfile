@@ -15,14 +15,22 @@ RUN \
 
 RUN mkdir -p /data
 WORKDIR /data
-RUN pwd
-COPY package*.json ./
 
-COPY index.js ./
+RUN pwd
+
+COPY package*.json /data/
+COPY index.js /data/index.js
+
+COPY package*.json /
+COPY index.js /
+COPY run.sh /
+
+RUN chmod a+x /run.sh
+
 RUN ls
 
 RUN npm install
 
 EXPOSE 5683
 
-CMD [ "node", "index.js" ]
+CMD ["run.sh"]
