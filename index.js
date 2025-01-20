@@ -5,7 +5,7 @@ const fs = require('fs');
 
 // Path to the JSON file
 const filePath = './options.json';
-const filePath2 = 'data/options.json';
+const filePath2 = '/data/options.json';
 
 // Read the file asynchronously
 fs.readFile(filePath, 'utf8', (err, data) => {
