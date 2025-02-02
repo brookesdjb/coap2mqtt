@@ -39,7 +39,7 @@ let regPayloadT = (deviceId) => (
        "identifiers":[
            `${deviceId}ae`
        ],
-       "name":"Spool 1",
+       "name":`Spool ${deviceId}`,
        "manufacturer": "Example sensors Ltd.",
        "model": "Example Sensor",
        "model_id": "K9",
