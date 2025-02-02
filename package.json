@@ -12,6 +12,8 @@
   "description": "",
   "dependencies": {
     "coap": "^1.4.0",
+    "coap-packet": "^1.1.1",
+    "dgram": "^1.0.1",
     "mqtt": "^5.10.3"
   }
 }
