@@ -102,7 +102,7 @@ server.on('request', (req, res) => {
 console.log(req.payload.toString())
     const payload = req.payload.toString().split(':');
     console.log(req.url.split('/')[1], payload[0], payload[1], JSON.stringify(payload));
-    client.publish(`homeassistant/sensor/esp001/state`, JSON.stringify({temperature: Number(payload[0]), humidity: Number(payload[1]), battery: Number(payload[2])}));
+    client.publish(`homeassistant/sensor/${req.url.split('/')[1]}/state`, JSON.stringify({temperature: Number(payload[0]), humidity: Number(payload[1]), battery: Number(payload[2])}));
 
   res.end('Hello\n')
 })
